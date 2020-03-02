@@ -9,17 +9,18 @@ namespace Domain
     {
         public Car()
         {
-            //Users = new HashSet<User>();
         }
         [Required] [Key]
         public Guid CarId { get; set; }
         [Required]
-        public Guid ChassisIdF { get; set; }
+        public Guid ChassisId { get; set; }
+        [ForeignKey("ChassisId")]
+        public Chassis Chassis { get; set; }
         public string Brand { get; set; }
         [Required]
-        public Guid EngineIdF { get; set; }
-        //[ForeignKey("CarId")]
-        //[InverseProperty("Cars")]
+        public Guid EngineId { get; set; }
+        [ForeignKey("EngineId")]
+        public Engine Engine { get; set; }
         public virtual ICollection<CarUser> CarUsers { get; set; }
 
     }

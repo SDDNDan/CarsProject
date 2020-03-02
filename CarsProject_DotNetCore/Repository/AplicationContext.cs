@@ -9,7 +9,6 @@ namespace Repository
         public AplicationContext(DbContextOptions<AplicationContext> options) : base(options)
         {
         }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS; Initial Catalog=CarsProjectDB;Integrated Security=True");

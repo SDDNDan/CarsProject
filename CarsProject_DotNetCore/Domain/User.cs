@@ -9,12 +9,10 @@ namespace Domain
     {
         public User()
         {
-           // Cars = new HashSet<Car>();
         }
         [Required] [Key]
         public Guid UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //[InverseProperty("Users")]
+
         public virtual ICollection<CarUser> CarsUsers { get; set; }
              
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Infrastructure;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,14 +14,18 @@ namespace CarsProject_DotNetCore
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<AplicationContext>();                                        // It should be switched with something from the Infrastructure Layer
+            
+            ServicesInfrastructure servicesInfrastructure = new ServicesInfrastructure(services);
+
+            servicesInfrastructure.AddDbContext();
+            servicesInfrastructure.ConfigureMapper();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +36,12 @@ namespace CarsProject_DotNetCore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=values}/{id?}");
+            });
         }
     }
 }

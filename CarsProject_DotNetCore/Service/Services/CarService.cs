@@ -13,11 +13,6 @@ namespace Service.Services
         private AplicationContext _aplicationContext;
         private IUnitOfWork _unitOfWork;
 
-        public CarService(AplicationContext aplicationContext)
-        {
-            _aplicationContext = aplicationContext;
-            _unitOfWork = new UnitOfWork(aplicationContext);
-        }
         public CarService(AplicationContext aplicationContext, IUnitOfWork unitOfWork)
         {
             _aplicationContext = aplicationContext;
@@ -32,7 +27,10 @@ namespace Service.Services
 
         public Car GetCar(Guid Id)                  
         {
-            return _unitOfWork.Cars.Get(Id) as Car;                          // not sure if it's right
+            Car car = _unitOfWork.Cars.Get(Id) as Car;
+
+           // return //DTOCAr
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Car> GetCars()
@@ -48,9 +46,9 @@ namespace Service.Services
         public void UpdateCar(Car updatedCar)                                 
         {
             Car originalCar = _unitOfWork.Cars.Get(updatedCar.CarId);
-            originalCar.ChassisIdF = updatedCar.ChassisIdF;
+            originalCar.ChassisId = updatedCar.ChassisId;
             originalCar.Brand = updatedCar.Brand;
-            originalCar.EngineIdF = updatedCar.EngineIdF;
+            originalCar.EngineId = updatedCar.EngineId;
             originalCar.CarUsers = updatedCar.CarUsers;
         }
     }
