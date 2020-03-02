@@ -1,6 +1,14 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Infrastructure;
+using Service.Services;
+using Repository.UnitOfWork;
+using Repository;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Service;
+using Service.DTO;
+using System;
 
 namespace CarsProject_DotNetCore.Controllers
 {
@@ -12,7 +20,24 @@ namespace CarsProject_DotNetCore.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            /*var optionsBuilder = new DbContextOptionsBuilder<AplicationContext>();
+            AplicationContext context = new AplicationContext(optionsBuilder.Options);
+            UnitOfWork unitOfWork = new UnitOfWork(context);
+            var mappingConfig = new MapperConfiguration(mc =>               // Auto Mapper Configurations
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            EngineService engineService = new EngineService(context, unitOfWork, mapper);
+            */
+            //EngineDTO engineDTO = new EngineDTO {
+            //Description = "TW100",
+            //CylindersNumber = 3
+            //};
+            //engineService.InsertEngine(engineDTO);
 
+            //var x = engineService.GetEngine(Guid.Parse("22268589-F27B-4D35-96C8-6B48218A10C9"));
+            //return new string[] { x.Description.ToString() };
             return new string[] { "value1", "value2" };
         }
 

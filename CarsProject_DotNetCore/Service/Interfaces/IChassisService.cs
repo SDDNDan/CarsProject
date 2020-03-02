@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Service.DTO;
 using System;
 
 
@@ -6,9 +7,9 @@ namespace Service.Interfaces
 {
     public interface IChassisService
     {
-        Chassis GetChassis(Guid Id);
-        void InsertChassis(Chassis chassis);
-        void UpdateChassis(Chassis chassis);
+        ChassisDTO GetChassis(Guid Id);
+        void InsertChassis(ChassisDTO chassisDTO);
+        void UpdateChassis(ChassisDTO chassisDTO);
         void DeleteChassis(Guid Id);
     }
 }

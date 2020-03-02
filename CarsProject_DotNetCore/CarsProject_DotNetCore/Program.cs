@@ -11,6 +11,8 @@ namespace CarsProject_DotNetCore
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
+            //using (var scope = host.Services.CreateScope())
+            //{ }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

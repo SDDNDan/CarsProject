@@ -12,13 +12,11 @@ namespace Service.Services
 {
    public class EngineService : IEngineService
     {
-        private AplicationContext _aplicationContext;
         private IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public EngineService(AplicationContext aplicationContext, IUnitOfWork unitOfWork, IMapper mapper)
+        public EngineService( IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _aplicationContext = aplicationContext;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -34,15 +32,17 @@ namespace Service.Services
         {
             Engine engine =  _unitOfWork.Engines.Get(Id) as Engine;
             return _mapper.Map<EngineDTO>(engine);
-            //throw new NotImplementedException();
         }
 
-        public void InsertEngine(EngineDTO engine)
+        public void InsertEngine(EngineDTO engineDTO)
         {
-            throw new NotImplementedException();
+            Engine engine = _mapper.Map<Engine>(engineDTO);
+            engine.EngineId = Guid.NewGuid();
+            _unitOfWork.Engines.Add(engine);
+            _unitOfWork.Complete();
         }
 
-        public void UpdateEngine(EngineDTO engine)
+        public void UpdateEngine(EngineDTO engineDTO)
         {
             throw new NotImplementedException();
         }
