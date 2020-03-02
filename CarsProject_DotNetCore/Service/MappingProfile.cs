@@ -11,7 +11,9 @@ namespace Service
         {
             CreateMap<Car, CarDTO>()
                 .ForMember(dest => dest.Brand,
-                           opt => opt.MapFrom(src=>src.Brand));
+                           opt => opt.MapFrom(src => src.Brand));
+                //.ForMember(dest => dest.Chassis,
+                  //         opt => opt.MapFrom(s => Map<Chassis, ChassisDTO>(s.Chassis)));
                 // need to map the objects.
             CreateMap<CarDTO, Car>();
 

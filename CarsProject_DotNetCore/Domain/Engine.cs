@@ -12,7 +12,7 @@ namespace Domain
         public Guid EngineId { get; set; }
         public string Description { get; set; }
         public int CylindersNumber { get; set; }
-        [ForeignKey("EngineIdF")]
+        [ForeignKey("EngineId")]
         public ICollection<Car> Cars { get; set; }
     }
 }

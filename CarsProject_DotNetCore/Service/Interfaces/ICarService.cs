@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Service.DTO;
 using System;
 using System.Collections.Generic;
 
@@ -6,10 +7,10 @@ namespace Service.Interfaces
 {
     public interface ICarService
     {
-        IEnumerable<Car> GetCars();
-        Car GetCar(Guid Id);
-        void InsertCar(Car car);
-        void UpdateCar(Car car);
+        IEnumerable<CarDTO> GetCars();
+        CarDTO GetCar(Guid Id);
+        void InsertCar(CarDTO carDTO);
+        void UpdateCar(CarDTO carDTO);
         void DeleteCar(Guid Id);
     }
 }

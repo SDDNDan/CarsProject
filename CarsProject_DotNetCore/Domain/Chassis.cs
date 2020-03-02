@@ -16,7 +16,7 @@ namespace Domain
         public Guid ChassisId { get; set; }
         public string Description { get; set; }
         public string CodeNumber { get; set; }
-        [ForeignKey("ChassisIdF")]
+        [ForeignKey("ChassisId")]
         public virtual ICollection<Car> Cars { get; set; }
     }
 }
