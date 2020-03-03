@@ -31,7 +31,6 @@ namespace CarsProject_DotNetCore.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<CarDTO>> Get()
         {
-
             //EngineDTO engineDTO = new EngineDTO {
             //Description = "TW100",
             //CylindersNumber = 3
@@ -40,7 +39,6 @@ namespace CarsProject_DotNetCore.Controllers
 
             //var x = engineService.GetEngine(Guid.Parse("22268589-F27B-4D35-96C8-6B48218A10C9"));
             //return new string[] { x.Description.ToString() };
-
             IEnumerable<CarDTO> cars = _carService.GetCars() as IEnumerable<CarDTO>;         
             return cars.ToList();
         }
@@ -49,9 +47,7 @@ namespace CarsProject_DotNetCore.Controllers
         [HttpGet("{id}")]
         public ActionResult<Car> Get(int id)
         {
-
              return _carService.GetCar22(Guid.Parse("A7B1A155-B460-4582-B84E-F468965531F2"));
-
         }
 
         // POST api/values

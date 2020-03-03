@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Domain;
-using Repository;
 using Repository.Interfaces;
-using Repository.UnitOfWork;
 using Service.DTO;
 using Service.Interfaces;
 
