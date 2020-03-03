@@ -12,5 +12,7 @@ namespace Service.Interfaces
         void InsertCar(CarDTO carDTO);
         void UpdateCar(CarDTO carDTO);
         void DeleteCar(Guid Id);
+
+        Car GetCar22(Guid Id);
     }
 }
