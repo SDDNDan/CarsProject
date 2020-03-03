@@ -8,6 +8,11 @@ namespace Domain
 {
     public class Engine
     {
+        public Engine()
+        {
+            Cars = new HashSet<Car>();
+        }
+
         [Required] [Key]
         public Guid EngineId { get; set; }
         public string Description { get; set; }

@@ -9,6 +9,7 @@ namespace Domain
     {
         public Car()
         {
+            CarsUsers = new HashSet<CarUser>();
         }
         [Required] [Key]
         public Guid CarId { get; set; }
@@ -25,7 +26,7 @@ namespace Domain
         [ForeignKey("EngineId")]
         public Engine Engine { get; set; }
 
-        public virtual ICollection<CarUser> CarUsers { get; set; }
+        public virtual ICollection<CarUser> CarsUsers { get; set; }
 
     }
 }

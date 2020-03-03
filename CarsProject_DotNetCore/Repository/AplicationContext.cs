@@ -28,7 +28,7 @@ namespace Repository
 
             modelBuilder.Entity<CarUser>()
              .HasOne(pt => pt.Car)
-             .WithMany(p => p.CarUsers)
+             .WithMany(p => p.CarsUsers)
              .HasForeignKey(pt => pt.CarId);
 
             modelBuilder.Entity<CarUser>()

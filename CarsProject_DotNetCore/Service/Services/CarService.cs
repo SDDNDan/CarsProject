@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Domain;
 using Repository;
@@ -23,14 +24,28 @@ namespace Service.Services
 
         public IEnumerable<CarDTO> GetCars()
         {
-            IEnumerable<Car> Cars = _unitOfWork.Cars.GetAll();
-            return _mapper.Map<IEnumerable<CarDTO>>(Cars);
+            IEnumerable<Car> cars = _unitOfWork.Cars.GetAll();
+            IEnumerable<CarDTO> carsDTO = new CarDTO[] { };
+            //IEnumerable<CarDTO> carsDTO = _mapper.Map<IEnumerable<CarDTO>>(Cars);
+
+            foreach (var car in cars)
+            {
+                CarDTO carDTO = new CarDTO();
+                carDTO = _mapper.Map<CarDTO>(car);
+                carDTO.Chassis = _mapper.Map<ChassisDTO>(car.Chassis);
+                carDTO.Engine = _mapper.Map<EngineDTO>(car.Engine);
+                carsDTO.ToList().Add(carDTO);
+            }
+            return carsDTO.ToList();
         }
 
         public CarDTO GetCar(Guid Id)
         {
             Car car = _unitOfWork.Cars.Get(Id) as Car;
-            return _mapper.Map<CarDTO>(car);
+            CarDTO carDTO =  _mapper.Map<CarDTO>(car);
+            carDTO.Chassis = _mapper.Map<ChassisDTO>(car.Chassis);
+            carDTO.Engine = _mapper.Map<EngineDTO>(car.Engine);
+            return carDTO;
         }
 
         public void InsertCar(CarDTO carDTO)
