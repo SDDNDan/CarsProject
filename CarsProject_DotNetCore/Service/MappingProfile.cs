@@ -9,13 +9,21 @@ namespace Service
     {
         public MappingProfile()
         {
-            CreateMap<Car, CarDTO>();
-              
-            //.ForMember(dest => dest.Brand,
-            //          opt => opt.MapFrom(src => src.Brand));
-            // .ForMember(dest => dest.Chassis,
-            //          opt => opt.MapFrom(s => opt.Map<Chassis, ChassisDTO>(s.Chassis)));
-            // need to map the objects.
+            CreateMap<Car, CarDTO>()
+                //.IncludeMembers(s => s.Chassis, s => s.Engine)
+                .ForMember(dest => dest.Chassis,
+                           opt => opt.MapFrom(src => src.Chassis))
+                .ForPath(dest => dest.Chassis.CodeNumber,
+                            opt => opt.MapFrom(src => src.Chassis.CodeNumber))
+                .ForPath(dest => dest.Chassis.Description,
+                            opt => opt.MapFrom(src => src.Chassis.Description))
+                .ForPath(dest => dest.Engine.CylindersNumber,
+                            opt => opt.MapFrom(src => src.Engine.CylindersNumber))
+                .ForPath(dest => dest.Engine.Description,
+                            opt => opt.MapFrom(src => src.Engine.Description));
+            //CreateMap<Chassis, CarDTO>();
+            //CreateMap<Engine, CarDTO>();
+            
             CreateMap<CarDTO, Car>();
 
             CreateMap<Engine, EngineDTO>();

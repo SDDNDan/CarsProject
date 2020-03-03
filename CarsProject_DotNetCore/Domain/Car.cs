@@ -16,14 +16,14 @@ namespace Domain
 
         [Required]
         public Guid ChassisId { get; set; }
-        [ForeignKey("ChassisId")]
+        //[ForeignKey("ChassisId")]
         public Chassis Chassis { get; set; }
 
         public string Brand { get; set; }
 
         [Required]
         public Guid EngineId { get; set; }
-        [ForeignKey("EngineId")]
+        //[ForeignKey("EngineId")]
         public Engine Engine { get; set; }
 
         public virtual ICollection<CarUser> CarsUsers { get; set; }

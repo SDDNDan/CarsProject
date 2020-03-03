@@ -25,18 +25,18 @@ namespace Service.Services
         public IEnumerable<CarDTO> GetCars()
         {
             IEnumerable<Car> cars = _unitOfWork.Cars.GetAll();
-            IEnumerable<CarDTO> carsDTO = new CarDTO[] { };
-            //IEnumerable<CarDTO> carsDTO = _mapper.Map<IEnumerable<CarDTO>>(Cars);
-
-            foreach (var car in cars)
-            {
-                CarDTO carDTO = new CarDTO();
-                carDTO = _mapper.Map<CarDTO>(car);
-                carDTO.Chassis = _mapper.Map<ChassisDTO>(car.Chassis);
-                carDTO.Engine = _mapper.Map<EngineDTO>(car.Engine);
-                carsDTO.ToList().Add(carDTO);
-            }
-            return carsDTO.ToList();
+            //IEnumerable<CarDTO> carsDTO = new CarDTO[] { };
+            IEnumerable<CarDTO> carsDTO = _mapper.Map<IEnumerable<CarDTO>>(cars);
+            return carsDTO;
+            //foreach (var car in cars)
+            //{
+            //    CarDTO carDTO = new CarDTO();
+            //    carDTO = _mapper.Map<CarDTO>(car);
+            //    carDTO.Chassis = _mapper.Map<ChassisDTO>(car.Chassis);
+            //    carDTO.Engine = _mapper.Map<EngineDTO>(car.Engine);
+            //    carsDTO.ToList().Add(carDTO);
+            //}
+            //return carsDTO.ToList();
         }
 
         public CarDTO GetCar(Guid Id)
@@ -46,6 +46,11 @@ namespace Service.Services
             carDTO.Chassis = _mapper.Map<ChassisDTO>(car.Chassis);
             carDTO.Engine = _mapper.Map<EngineDTO>(car.Engine);
             return carDTO;
+        }
+
+        public Car GetCar22(Guid Id)
+        {
+            return _unitOfWork.Cars.Get(Id) as Car;
         }
 
         public void InsertCar(CarDTO carDTO)

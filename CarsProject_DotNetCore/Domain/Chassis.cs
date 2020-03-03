@@ -17,6 +17,7 @@ namespace Domain
         public string Description { get; set; }
         public string CodeNumber { get; set; }
         [ForeignKey("ChassisId")]
+        [InverseProperty("Chassis")]
         public virtual ICollection<Car> Cars { get; set; }
     }
 }

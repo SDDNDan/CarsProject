@@ -10,6 +10,7 @@ using Service;
 using Service.DTO;
 using System;
 using System.Linq;
+using Domain;
 
 namespace CarsProject_DotNetCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace CarsProject_DotNetCore.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<CarDTO>> Get()
@@ -45,9 +47,19 @@ namespace CarsProject_DotNetCore.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Car> Get(int id)
         {
-            return "value";
+            var optionsBuilder = new DbContextOptionsBuilder<AplicationContext>();
+            AplicationContext context = new AplicationContext(optionsBuilder.Options);
+            UnitOfWork unitOfWork = new UnitOfWork(context);
+            var mappingConfig = new MapperConfiguration(mc =>               // Auto Mapper Configurations
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            CarService carService = new CarService(unitOfWork, mapper);
+            // return carService.GetCar(Guid.Parse("A7B1A155-B460-4582-B84E-F468965531F2"));
+            return carService.GetCar22(Guid.Parse("A7B1A155-B460-4582-B84E-F468965531F2"));
         }
 
         // POST api/values

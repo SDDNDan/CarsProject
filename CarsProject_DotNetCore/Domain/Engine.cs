@@ -18,6 +18,7 @@ namespace Domain
         public string Description { get; set; }
         public int CylindersNumber { get; set; }
         [ForeignKey("EngineId")]
+        [InverseProperty("Engine")]
         public ICollection<Car> Cars { get; set; }
     }
 }
