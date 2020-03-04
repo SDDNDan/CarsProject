@@ -7,6 +7,7 @@ namespace Service
 {
     public class MappingProfile : Profile
     {
+    // This one should be in infrastructure
         public MappingProfile()
         {
             CreateMap<Car, CarDTO>()
