@@ -1,4 +1,8 @@
-﻿using Domain;
+// The order should be 
+// System
+// Service
+
+using Domain; //Why domain here?
 using Service.DTO;
 using System;
 using System.Collections.Generic;
