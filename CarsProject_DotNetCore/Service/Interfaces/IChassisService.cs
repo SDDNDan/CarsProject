@@ -1,4 +1,8 @@
-﻿using Domain;
+// Order should be
+// System
+// Service
+
+using Domain; //Why domain?
 using Service.DTO;
 using System;
 
